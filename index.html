@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>走出魔幻森林</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap&subset=chinese-traditional" rel="stylesheet">
+  <script src="./sweetalert2.all.min.js"></script>
+  <link href="./animate/animate.css" rel="stylesheet">
+
+
+<style>
+  body{
+    font-family: 'Fjalla One', sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
+    background-image: url(./img/forest.jpg) ;
+    background-repeat:no-repeat; 
+    background-size:100%;
+    margin: 0px; 
+    background-attachment: fixed;
+  }
+  #adclose{
+    background: #aaaaaa;
+    border-radius: 2rem;
+    border: black 5px solid;
+    position: absolute;
+    left: 60vw;
+    top: 30vh;
+    transform: translate(-0%, -50%);
+    margin-left: 260px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  z-index: 2;
+  }
+  #adclose:hover {
+    box-shadow: 0px 0px 20px #fff;
+  }
+  #ad{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(128, 128, 128, 0.8);
+    display: block;
+    z-index: 10;
+  }
+
+
+  #adcontent {
+    position: absolute;
+    left: 15vw;
+    top: 20vh;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 2rem;
+    font-size: 0px;
+    z-index: 1;
+  }
+  #adcontent:hover {
+    background-attachment: #555555;
+    filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.5))
+  }
+  #adcontent:active {
+    background-attachment: #555555;
+    filter: drop-shadow(5px 5px 15px rgba(150, 2, 93, 0.6)) invert(5%) saturate(200%);
+  }
+  
+
+
+#day1{
+width: 200px;
+height: 50px;
+font-weight: bolder;
+display: none;
+outline: .5rem solid rgb(59, 46, 46);
+box-shadow: 0 0 0 .5rem rgb(59, 46, 46) ,0px 10px 10px .8rem #000;
+border-radius: .8em;
+background: rgb(153, 124, 86);
+color: aliceblue;
+text-align: center;
+font-size: 1.5rem;
+line-height: 40px;
+cursor:pointer;
+margin: 2rem auto;
+}
+
+#day2{
+  width: 200px;
+height: 50px;
+font-weight: bolder;
+display: none;
+outline: .5rem solid rgb(59, 46, 46);
+box-shadow: 0 0 0 .5rem rgb(59, 46, 46) ,0px 10px 10px .8rem #000;
+border-radius: .8em;
+background: rgb(153, 124, 86);
+color: aliceblue;
+text-align: center;
+font-size: 1.5rem;
+line-height: 40px;
+cursor:pointer;
+margin: 2rem auto;
+}
+#day3{
+  width: 200px;
+height: 50px;
+font-weight: bolder;
+display: none;
+outline: .5rem solid rgb(59, 46, 46);
+box-shadow: 0 0 0 .5rem rgb(59, 46, 46) ,0px 10px 10px .8rem #000;
+border-radius: .8em;
+background: rgb(153, 124, 86);
+color: aliceblue;
+text-align: center;
+font-size: 1.5rem;
+line-height: 40px;
+cursor:pointer;
+margin: 2rem auto;
+}
+#day4{
+  width: 200px;
+height: 50px;
+font-weight: bolder;
+display: none;
+outline: .5rem solid rgb(59, 46, 46);
+box-shadow: 0 0 0 .5rem rgb(59, 46, 46) ,0px 10px 10px .8rem #000;
+border-radius: .8em;
+background: rgb(153, 124, 86);
+color: aliceblue;
+text-align: center;
+font-size: 1.5rem;
+line-height: 40px;
+cursor:pointer;
+margin: 2rem auto;
+}
+#day5{
+  width: 200px;
+height: 50px;
+font-weight: bolder;
+display: none;
+outline: .5rem solid rgb(59, 46, 46);
+box-shadow: 0 0 0 .5rem rgb(59, 46, 46) ,0px 10px 10px .8rem #000;
+border-radius: .8em;
+background: rgb(153, 124, 86);
+color: aliceblue;
+text-align: center;
+font-size: 1.5rem;
+line-height: 40px;
+cursor:pointer;
+margin: 2rem auto;
+}
+
+#gril{
+  position:fixed;
+  top:10vh;
+  left: 70vw;
+  width: 500px;
+z-index: 3;
+display:none;
+filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.5));
+cursor: pointer;
+
+}
+#Elder{
+  position:fixed;
+  top: 10vh;
+  left: 0vw;
+  width: 500px;
+  z-index: 2;
+  display:none;
+  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.5));
+}
+#Goblin{
+  position:fixed;
+  top: 20vh;
+  left: 0vw;
+  width: 400px;
+display: none;
+z-index: 1;
+filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.5));
+}
+#arrow{
+  width:100px ;
+}
+#li{
+  position: relative;
+  top:10px;
+  margin: auto;
+align-items: center;
+width: 300px;
+background-image: url(https://picsum.photos/400/600);
+border: 5px solid rgb(59, 46, 46);
+border-top: 25px solid rgb(59, 46, 46);
+border-bottom: 15px solid rgb(59, 46, 46);
+border-radius: 0.5rem;
+animation: light 30s  linear infinite;
+display: none;
+}
+#Treasure_chest1{
+text-align:center;
+filter: drop-shadow(0px 0px 15px rgba(255, 230, 0, 0.5)) ;
+display: none;
+}
+#Treasure_chest1:hover{
+filter: drop-shadow(0px 0px 50px rgb(255, 102, 0,0.8)) saturate(200%);
+}
+#Treasure_chest2{
+text-align:center;
+filter: drop-shadow(0px 0px 15px rgba(255, 230, 0, 0.5)) ;
+display: none;
+}
+#Treasure_chest2:hover{
+filter: drop-shadow(0px 0px 50px rgb(255, 102, 0,0.8)) saturate(200%);
+}
+
+#Behind{
+  position:fixed;
+  top:8vh;
+  left: 3vw;
+  font-size: 26px;
+  letter-spacing: 0.5rem;
+  color: aliceblue;
+  font-weight: bolder;
+  color: hsla(252, 100%, 95%, 1);
+  text-shadow: 0 0 10px hsla(252, 100%, 60%, 1), 0 0 30px hsla(252, 100%, 30%, 1);
+  display: none;
+}
+
+@keyframes light {
+    from {
+      color: hsla(0, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(0, 100%, 60%, 1), 0 0 200px hsla(0, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(0, 100%, 60%, 1), 0 0 1200px hsla(0, 100%, 30%, 1);
+    }
+
+    10% {
+      color: hsla(36, 100%, 95%, 1);
+      text-shadow: 0 0 10px hsla(36, 100%, 60%, 1), 0 0 30px hsla(36, 100%, 30%, 1);
+      box-shadow: inset 0 0 40px hsla(36, 100%, 60%, 1), 0 0 200px hsla(36, 100%, 30%, 1);
+    }
+
+    20% {
+      color: hsla(72, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(72, 100%, 60%, 1), 0 0 200px hsla(72, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(72, 100%, 60%, 1), 0 0 1200px hsla(72, 100%, 30%, 1);
+    }
+
+    30% {
+      color: hsla(108, 100%, 95%, 1);
+      text-shadow: 0 0 10px hsla(108, 100%, 60%, 1), 0 0 30px hsla(108, 100%, 30%, 1);
+      box-shadow: inset 0 0 40px hsla(108, 100%, 60%, 1), 0 0 200px hsla(108, 100%, 30%, 1);
+    }
+
+    40% {
+      color: hsla(144, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(144, 100%, 60%, 1), 0 0 200px hsla(144, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(144, 100%, 60%, 1), 0 0 1200px hsla(144, 100%, 30%, 1);
+    }
+
+    50% {
+      color: hsla(180, 100%, 95%, 1);
+      text-shadow: 0 0 10px hsla(108, 100%, 60%, 1), 0 0 30px hsla(108, 100%, 30%, 1);
+      box-shadow: inset 0 0 40px hsla(108, 100%, 60%, 1), 0 0 200px hsla(108, 100%, 30%, 1);
+    }
+
+    60% {
+      color: hsla(216, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(216, 100%, 60%, 1), 0 0 200px hsla(216, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(216, 100%, 60%, 1), 0 0 1200px hsla(216, 100%, 30%, 1);
+    }
+
+    70% {
+      color: hsla(252, 100%, 95%, 1);
+      text-shadow: 0 0 10px hsla(252, 100%, 60%, 1), 0 0 30px hsla(252, 100%, 30%, 1);
+      box-shadow: inset 0 0 40px hsla(252, 100%, 60%, 1), 0 0 200px hsla(252, 100%, 30%, 1);
+    }
+
+    80% {
+      color: hsla(288, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(288, 100%, 60%, 1), 0 0 200px hsla(288, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(288, 100%, 60%, 1), 0 0 1200px hsla(288, 100%, 30%, 1);
+    }
+
+    90% {
+      color: hsla(324, 100%, 95%, 1);
+      text-shadow: 0 0 10px hsla(324, 100%, 60%, 1), 0 0 30px hsla(324, 100%, 30%, 1);
+      box-shadow: inset 0 0 40px hsla(324, 100%, 60%, 1), 0 0 200px hsla(324, 100%, 30%, 1);
+    }
+
+    to {
+      color: hsla(360, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(360, 100%, 60%, 1), 0 0 200px hsla(360, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(360, 100%, 60%, 1), 0 0 1200px hsla(360, 100%, 30%, 1);
+    }
+  }
+
+
+</style>
+</head>
+
+<body>
+    <div id="ad">
+        <div id="adcontent" class="animated flipInX  ">
+          <img src="./img/logo.png" alt="">
+        </div>
+        <div id="adclose" onclick="adclose()"><img src="./img/baseline_close_black_24dp.png" alt="" title="close"></div>
+      </div>
+
+<div id="li" class="animated slideInDown">
+  <div id="day1" class="animated bounceIn">第一天</div>
+  <div id="day2" class="animated bounceIn">第二天</div>
+  <div id="day3" class="animated bounceIn">第三天</div>
+  <div id="day4" class="animated bounceIn">第四天</div>
+  <div id="day5" class="animated bounceIn">第五天</div>
+</div>
+<div id="Treasure_chest1"><img src="./img/Treasure chest.png" alt="寶箱"></div>
+<div id="Treasure_chest2"><img src="./img/Treasure chest2.png" alt="寶箱"></div>
+
+<img src="./img/gril2.png" alt="" id="gril" class="animated slow fadeInUp " onclick="au()">
+<img src="./img/Elder.png" alt="" id="Elder" class="animated slow jackInTheBox ">
+<img src="./img/Goblin.png" ale="" id="Goblin" class="animated tada ">
+
+<div id="Behind">
+  <img src="./img/logo.png" alt="走出魔幻森林"/>
+  <p>製作人：朱軒</p>
+  <p>&nbsp;&nbsp;製作日期：2019/08/05</p>
+  <p>&nbsp;&nbsp;&nbsp;製作目的：練習css、HTML、Javascript<br/>素材為網路抓取純學術研究使用!</p>
+
+</div>
+
+
+  <script>
+    /*
+使用ifelse+alert+confirm,prompt，設計一個問答YES/NO闖五關，每天都要有提示用戶選擇要還是不要，選對那就繼續闖關，選錯就顯示遊戲結束。
+prompt 提供文字的問題，使用可以輸入文字。請使用者輸入他的遊戲名字; 返回，用户输入的值。   按取消 返回null
+confirm 闖五關的題目說明，請使用者選擇要還是不要  确定,返回true；按取消返回false
+alert 提供訊息結果 无返回值
+if else 拿來做判斷下一步該怎麼走
+*/
+var audio = new Audio();
+function au(){
+audio.src="sound/voice2_JP.wav";
+          audio.play();
+document.getElementById("gril").className="animated bounce";
+setTimeout(function (){document.getElementById("gril").className=""},1000);
+}
+
+document.getElementById("ad").onclick = adclose;
+
+
+function adclose() {
+  setTimeout(function(){document.getElementById("ad").style.display = "none"},1000);
+  setTimeout(function(){document.getElementById("gril").style.display = "block"},1000);
+  setTimeout(function(){document.getElementById("Elder").style.display = "block"},2500);
+  document.getElementById("adcontent").className="animated flipOutX";
+  document.getElementById("li").style.display="block";
+  setTimeout(start, 3500);
+}
+
+
+function start(){
+    Swal.fire({
+      input: 'text',
+      inputValue: '愛莉絲',
+      inputValidator: (value) => {
+    if (!value) {
+      return '請填上任意暱稱。'
+    }},
+      imageUrl: './img/Elder.png',
+      imageWidth: 200,
+      imageAlt: '精靈長老',
+      animation: false,
+      showCancelButton: false,
+      confirmButtonText: '好!已經確定 &rarr;',
+      title: '精靈長老：請問您怎麼稱呼呢?',
+        text: '森林裡的精靈們拍動翅膀，翩翩飛舞的想要認識你，並想要指引你走出魔幻的森林。'
+    }).then(function (re) {
+      name = re.value;
+      if(name=="undefined"){
+        start();
+      }
+      else{        
+        console.log(re);
+        Swal.fire({  
+        title: re.value+'在魔幻森林的密林之中!',
+        html:
+            '森林的精靈們對於這個稀有的訪客既好奇又高歌歡呼著: <pre><code>' +
+           JSON.stringify(re.value) +
+            '</code></pre>的名子，愉快的過了第一天。',
+          imageUrl: './img/forest.jpg',
+          imageWidth: 500,
+          animation: false,
+          confirmButtonText: 'Lovely!', }).then(function(result){
+            day1();
+          });
+     } })
+}
+
+function day1(){
+  document.getElementById("day1").style.display="block";
+  document.getElementById("day1").onclick=level1;
+}
+    function level1() {
+      Swal.fire({
+        title: name+'準備好踏上走出魔幻森林之旅了嗎??',
+        text: "雖然精靈們熱情款待，但是這立畢竟不是你的家，"+name+"還是必須找回離開這裡的路!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes,出發吧!',
+        cancelButtonText: 'No,繼續留下!',
+        reverseButtons: true,
+        imageUrl: './img/gril2.png',
+        imageWidth: 300,
+        imageAlt:name,
+      }).then((result) => {
+        if (result.value) {
+          document.getElementById("Elder").className = "animated fadeOutLeft";
+          swal.fire({
+            title:'出發!',
+            text:'臨走前精靈們哭得唏哩嘩啦的，想要'+name+'繼續待在那邊，不斷地向你訴說著精靈村的美好，還有無憂無慮的生活，不過你仍然去意已決，精靈村長們不知道在竊竊私語甚麼，不過最後'+name+'仍然成功地離開了精靈村!',
+            type:'success',
+            imageUrl: './img/cry.jpg',
+        imageWidth: 400,
+        imageAlt:"cry",
+          }).then(function(result){
+            day2();
+          });
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swal.fire({
+            title:'死亡!',
+            text:'最後'+name+'決定留下來，今晚一樣在精靈的歡迎歡呼之下逐漸睡去，但當你睜開眼的時候，你發現你已經被綁在烤爐上不斷的烹飪，精靈們一樣露出愉悅的歡呼，原來這是一群食人精靈，讓你繼續待下來，只是為了讓藥效發作把你制服而已!',
+            type:'error',
+            imageUrl: './img/dead.jpg',
+            imageWidth: 300,
+            imageAlt:"dead",
+          })
+        }
+      })
+    }
+
+
+    function day2(){
+      setTimeout(Eldergo,1000);
+          function Eldergo(){document.getElementById("Elder").style.display="none"};
+  document.getElementById("day2").style.display="block";
+  document.getElementById("day2").onclick=level2;
+  document.getElementById("day1").style.cursor="default";
+  document.getElementById("day1").onclick="";
+  document.getElementById("day1").style.color="rgb(59, 46, 46)";
+  document.getElementById("day1").style.textShadow="none";
+}
+    function level2() {
+      Swal.fire({
+        title: name+'是否營救他們而跟獸人決鬥呢??',
+        text: name+"撥開草叢叢林，你發現有一男一女顯露驚慌的表情，被成群的獸人圍攻，",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes,立刻營救!!',
+        cancelButtonText: 'No, 當作沒看到!',
+        reverseButtons: true,
+        imageUrl: './img/orc.jpg',
+            imageWidth: 300,
+            imageAlt: '獸人',
+      }).then((result) => {
+        if (result.value) {
+          swal.fire({
+            title:'營救失敗!',
+            text:name+'很努力的跟獸人決鬥，結果不知道為什麼戰鬥途中突然使不上力，呆滯的眼神望向四周半獸人，懵然閉上眼睡去，再次清醒是劇烈的疼痛感，原來自己的身軀正被獸人啃食!所幸一男一女早已逃跑成功!',
+            type:'error',
+            imageUrl: './img/dead.jpg',
+            imageWidth: 500,
+            imageAlt:'dead',
+          })
+
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swal.fire({
+            title:'含淚離去!',
+            text:name+'決定悄悄的離開，卻在離開不遠處，陸續不斷聽到，那一男一女撕聲肺裂的哀號，不斷的乞求求救聲，你用雙手將雙耳蓋上，你眼中的珍珠不斷地滑落，也不敢露出半點聲響，深怕吸引到獸人的注意，最後你成功離開了!',
+            imageUrl: './img/level2-1.jpg',
+      imageWidth: 400,
+      imageAlt: '絕望空洞',
+          type:'success'
+          }).then(function(result){
+            day3();
+          });
+        }
+      })
+    }
+
+    function day3(){
+  document.getElementById("day3").style.display="block";
+  document.getElementById("day3").onclick=level3;
+  document.getElementById("day2").style.cursor="default";
+  document.getElementById("day2").onclick="";
+  document.getElementById("day2").style.color="rgb(59, 46, 46)";
+  document.getElementById("day2").style.textShadow="none";
+}
+    function level3() {
+      document.getElementById("Goblin").style.display="block";
+      Swal.fire({
+        title: '是否依照他的話做??',
+        text:name+"遇到了一個面露醜惡的死靈巫師哥布林，他跟妳說「吠吠吠~在過不久你就會成為他底下奴役的死靈寵物，如果妳不想要成為我的死靈怪物，吠吠吠~那就把鎧甲武器衣服脫光，把自己綁在旁邊的樹上，我為你做法術儀式。」",
+        imageUrl: './img/Goblin.png',
+      imageWidth: 200,
+      imageAlt: '絕望空洞',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes,脫光並把自己綁在樹上!!',
+        cancelButtonText: 'No,低能死巫哥布林，直接殺了牠!',
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.value) {
+          document.getElementById("Goblin").className = "animated fadeOutLeft";
+          swal.fire({
+            title:'法式成功!',
+            text:'死巫哥布林，用牠噁爆的舌頭將你從頭到尾舔了一遍，殘留的口水黏液充滿著腐朽之味的惡臭，，您感到噁心並氣憤，覺得做錯選擇，不斷的反抗暴動，但是'+name+'卻已經解不開綑住自己的繩索，最後您在他不斷舌舔之際睡去，等你清醒之時，死巫哥布林正將你從樹上解開，死巫哥布林說「吠吠吠~已經幫你解毒了。」，但'+name+'卻未感受到任何改變，只有全身的腐朽口水之味，你受不了這個噁爆死巫哥布林，也受不了身上的噁液味道，就立刻跑走去清洗了。死巫哥布林只有在後頭一直「吠吠吠」的竊笑!',
+            type:'success',
+            imageUrl: './img/array.jpg',
+            imageWidth: 400,
+            imageAlt: '法陣',
+            }
+          ).then(function(result){
+            day4();
+          });
+        } 
+        else if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swal.fire({
+            Title:'死亡後成為死靈怪物!',
+            text:name+'輕易的把這個死巫哥布林給擊敗了，但是當你揮下殺了牠的最後一劍前，你突然暈倒，當你睜開眼時，你正被死巫哥布林給收藏在牠的小罐子，'+name+'查看了一下全身，只剩下魂魄的部分，你真的成為了他的死靈怪物，死巫哥布林看到你清醒後跟你說「吠吠吠~ 你被森林的食人妖精下了毒，我的眼可以看穿即將死亡之人的壽命，並把牠靈魂收歸我有!吠吠吠~以後你聽我命令了!」',
+            type:'error',
+            imageUrl: './img/deaddog.png',
+            imageWidth: 400,
+            imageAlt: '死靈怪物',
+            }
+          )
+        }
+      })
+    }
+
+    function day4(){
+  document.getElementById("day4").style.display="block";
+  document.getElementById("day4").onclick=level4;
+  document.getElementById("day3").style.cursor="default";
+  document.getElementById("day3").onclick="";
+  document.getElementById("day3").style.color="rgb(59, 46, 46)";
+  document.getElementById("day3").style.textShadow="none";
+  setTimeout(function (){document.getElementById("Goblin").style.display="none"},1000);
+}
+
+    function level4() {
+      Swal.fire({
+        title: '是否挖看看牌子下方土壤?',
+        text: "到了一座高地，往遠處看，看到了離開森林的路，為自己帶來極大的信心!你突然看到旁邊有一個明顯的牌子，上面寫著[此地無財寶三千萬]，並且下方土壤鬆鬆的，"+name+"懷疑牠下面是寶藏，也懷疑這是一個陷阱，你決定?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes,肯定有財寶，挖!!!',
+        cancelButtonText: 'No, 肯定是陷阱，離開!',
+        reverseButtons: true,
+        imageUrl: './img/Billboard.jpg',
+        imageWidth: 400,
+        imageAlt:"告示牌",
+      }).then((result) => {
+        if (result.value) {
+          swal.fire({
+            title:'竟然!',
+            text:name+'花了三天三夜努力地挖著牌子下方的土壤，第二天的時候還下大雨，差點淹死在自己挖得坑裡面，最後皇天不負苦心人，果然下面有一個非常精美的寶藏箱，你非常興奮，覺得肯定挖到財寶三千萬了!在興奮之餘，把這個寶藏箱給打開，但讓你意外的是，這裡面卻只有一張紙條，'+name+'把紙條拿起來看，上面寫著［就跟你說此地無財寶三千萬吧!］，你憤而將寶藏箱直接帶走。',
+            type:'success',
+            imageUrl: './img/Treasure chest2.png',
+            imageWidth: 400,
+            imageAlt: '寶箱',
+          }).then(function(result){
+            day5();
+          });
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swal.fire({
+            title:'安全離開!',
+            text:'未發生任何事，順利離開',
+            type:'success',
+            imageUrl: './img/dogrun.jpg',
+            imageWidth: 400,
+            imageAlt: '跑走',
+          }).then(function(result){
+            day5();
+          });
+        }
+      })
+    }
+
+    function day5(){
+  document.getElementById("day5").style.display="block";
+  document.getElementById("day5").onclick=level5;
+  document.getElementById("day4").style.cursor="default";
+  document.getElementById("day4").onclick="";
+  document.getElementById("day4").style.color="rgb(59, 46, 46)";
+  document.getElementById("day4").style.textShadow="none";
+}
+
+    function level5() {
+      document.getElementById("Goblin").className = "animated tada";
+      document.getElementById("Goblin").style.display="block";
+      Swal.fire({
+        title: name+'願意留下來還是選擇堅持離開?',
+        text: name+"看到了走出森林光芒，你跑著跑著，突然看到前方站著一個身影，原來是死巫哥布林，他跟你說「如果你從這裡出去，將來"+name+"將面臨的是高房價、高物價、高失業率、低薪資，被財團奴役的惡夢人生，而如果"+name+"繼續留下來，留在我的這片森林，我將給予你你想要的一切!你想要城堡，我給你城堡;你想要有僕人，我把那些妖精抓來供你使喚;你想要美味的食物，我將創造美味的食物給你;你想要炫富，我把這森林創造成貿易絲路大市鎮，你則是這座市鎮的最大鎮主!來吧!留下來!」",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes,我願意留下來，過理想人生!',
+        cancelButtonText: 'No, 我選擇離開過原本屬於我的奴役人生!',
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.value) {
+          document.getElementById("Goblin").className="animated fadeOutLeft";
+          swal.fire(
+            '獲得寶藏!',
+            '死巫哥布林，化作一縷光束後離開，留下了一個寶藏箱。',
+            'success'
+          ).then(function(result){
+            Treasure_chest1();
+          });
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          document.getElementById("Goblin").className="animated fadeOutLeft";
+          swal.fire(
+            '順利離開!',
+            '死巫哥布林，突然在'+name+'的面前消散掉了，並留下了一個寶藏箱。',
+            'success'
+          ).then(function(result){
+            Treasure_chest2();
+          });
+        }
+      })
+    }
+
+    function Treasure_chest1(){
+document.getElementById("Treasure_chest1").style.display="block";
+document.getElementById("Treasure_chest1").onclick=ending1;
+document.getElementById("day5").style.cursor="default";
+  document.getElementById("day5").onclick="";
+  document.getElementById("day5").style.color="rgb(59, 46, 46)";
+  document.getElementById("day5").style.textShadow="none";
+    }
+    function ending1(){
+      Swal.fire({
+        title: '過關-留在魔幻森林',
+        html:
+     `${name}決定留在了這個魔幻的森林，這個森林也是一個夢幻的森林，森林會慢慢的把你內心的潛意識期望給漸漸實現，死巫哥布林答應給予${name}的所有夢想願望，也一一的實現，包含城鎮、食物、僕人、法術、能力值轉移，魔幻森林建了一座四通八達的城鎮，這是一個多元物種的城鎮，裡面包含了精靈、死靈、智慧野獸、人類、半獸人、妖精、哥布林、矮人，各物種和諧相處，各物種也被鎮主${name}調教成乖巧聽話，安份守己。<br/><br/>從外地吸引來了很多外地客和外地物種，${name}因此揚名於魔幻森林的這個世界，${name}也得到了終生大成就。<br/><hr/>但${name}始終覺得不是那麼真實的感覺，${name}還是沒有離開這個魔幻森林!"`,
+        type: 'success',
+      }).then(function(result){
+            Behind();
+          });
+    }
+
+    function Treasure_chest2(){
+  document.getElementById("Treasure_chest2").style.display="block";
+  document.getElementById("Treasure_chest2").onclick=ending2;
+  document.getElementById("day5").style.cursor="default";
+  document.getElementById("day5").onclick="";
+  document.getElementById("day5").style.color="rgb(59, 46, 46)";
+  document.getElementById("day5").style.textShadow="none";
+    }
+    function ending2(){
+      Swal.fire({
+        title: '過關-回到現實生活',
+        html:
+     `寶箱閃爍!! ${name}順利的走出了這個魔幻的森林，映入眼簾的是高樓大廈，${name}突然發現自己身陷在都市的街頭，突然想起來剛下班，剛加班6小時 現在半夜12點多了，回去家裡人又會為了錢吵架，整天哀哀叫。<br/>突然又想起明天要繳交房租、水電費、手機費，錢包和銀行存款只剩200元，學貸到現在還沒還一毛錢，${name}笑笑了兩聲，仰望天空，淚水滑落，想起來這才是原本你的現實人生。<br/><hr/>雖然${name}離開了這個魔幻森林，但是${name}將要面對的卻是更嚴峻的生活!`,
+        type: 'success',
+      }).then(function(result){
+            Behind();
+          });
+    }
+
+function Behind(){
+  document.getElementById("li").style.display="none";
+  document.getElementById("Treasure_chest1").style.display="none";
+  document.getElementById("Treasure_chest2").style.display="none";
+  document.getElementById("Behind").style.display="block";
+  document.getElementById("Behind").className="animated fadeIn";
+}
+
+
+    let nt=new Date();
+let n_h=nt.getHours();
+let n_mi =nt.getMinutes();
+let n_s =nt.getSeconds();
+
+let n_y=nt.getFullYear();
+let n_mo=nt.getMonth();
+let n_d=nt.getDate();
+
+let n_hx = n_h %10;
+let n_mx = n_mi  %10;
+let n_sx = n_s  %10;
+
+let n_ht =Math.floor(n_h / 10);
+let n_mt = Math.floor(n_mi/10);
+let n_st = Math.floor(n_s/10);
+
+  </script>
+</body>
+
+</html>
